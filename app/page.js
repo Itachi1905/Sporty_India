@@ -1,101 +1,170 @@
-import Image from "next/image";
+"use client";
+import React, { useState } from "react";
+import { FaUsers, FaCheckCircle, FaTasks, FaRocket } from "react-icons/fa";
+import { motion } from "framer-motion";
 
-export default function Home() {
+const UIverseClone = () => {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-black to-gray-900 text-white">
+      <header className="flex justify-between items-center px-6 py-5 shadow-md">
+        <div className="text-4xl font-bold">
+          Sporty<span className="text-blue-500">india</span>
         </div>
+        <nav>
+          <ul className="flex space-x-8">
+            {["Athletes", "Challenges", "Spotlight", "Blog"].map((item) => (
+              <li key={item}>
+                <a
+                  href="#"
+                  className="text-white hover:text-blue-500 transition duration-200"
+                >
+                  {item}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <div className="flex space-x-4">
+          <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-200">
+            + Join
+          </button>
+          <button className="border border-white hover:border-blue-500 hover:text-blue-500 text-white py-2 px-4 rounded-lg transition duration-200">
+            Sign In or Create Account
+          </button>
+        </div>
+      </header>
+
+      <main className="text-center mt-16 px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="flex justify-center items-center">
+            <p className="text-green-400 text-sm mb-4 font-medium flex items-center">
+              <FaRocket className="mr-2 text-yellow-100" />
+              41 NEW POSTS THIS WEEK!
+            </p>
+          </div>
+          <h1 className="text-6xl font-bold text-gray-300 mb-4">
+            The Largest Platform
+          </h1>
+          <h1 className="text-6xl font-bold text-gray-300 mb-6">
+            for Athletes
+          </h1>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto font-cursive mb-12">
+            Community-built platform of Athletes from all over India. Hire as
+            Recruiter, Coach, Teacher, and Professionals.
+          </p>
+
+          <div className="relative w-full flex justify-center">
+            <div className="flex bg-white rounded-full p-1 w-96 items-center shadow-lg transform translate-y-[-25%] transition duration-300 hover:scale-105">
+              <input
+                type="text"
+                placeholder="Search for name, sport, ratings..."
+                className="flex-grow bg-transparent outline-none px-4 py-3 text-gray-900 rounded-l-full"
+              />
+              <button className="bg-blue-500 text-white py-2 px-6 rounded-full transition hover:bg-blue-600">
+                Search
+              </button>
+            </div>
+          </div>
+        </motion.div>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+      <div className="flex z-1 py-20 px-6 pt-28 items-center justify-center flex-wrap gap-10 relative">
+        <StatCard
+          icon={<FaUsers className="w-10 h-10 mb-4 text-gray-400" />}
+          number="5,227"
+          description="Athletes Registered"
+        />
+        <StatCard
+          icon={<FaCheckCircle className="w-10 h-10 mb-4 text-gray-400" />}
+          number="100%"
+          description="Legit for athletes and recruiters use"
+        />
+        <StatCard
+          icon={<FaTasks className="w-10 h-10 mb-4 text-gray-400" />}
+          number="16,191"
+          description="Works provided"
+        />
+      </div>
+
+      <CustomAccordion />
     </div>
   );
-}
+};
+
+const CustomAccordion = () => {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const handleToggle = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  const items = [
+    {
+      title: "What is Sporty India?",
+      content:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. In commodi accusamus saepe blanditiis facere quos facilis voluptatem ea fugit quidem? Veniam quisquam culpa, dolore in asperiores, similique eveniet expedita vero ullam tenetur molestias pariatur!",
+    },
+    {
+      title: "What Sporty India?",
+      content:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. In commodi accusamus saepe blanditiis facere quos facilis voluptatem ea fugit quidem? Veniam quisquam culpa, dolore in asperiores, similique eveniet expedita vero ullam tenetur molestias pariatur!",
+    },
+    {
+      title: "Is Sporty India Paid?",
+      content:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. In commodi accusamus saepe blanditiis facere quos facilis voluptatem ea fugit quidem? Veniam quisquam culpa, dolore in asperiores, similique eveniet expedita vero ullam tenetur molestias pariatur!",
+    },
+  ];
+
+  return (
+    <div className="mt-10">
+      {items.map((item, index) => (
+        <div key={index}>
+          <button
+            className="flex justify-between items-center w-full p-4 bg-gray-800 focus:outline-none"
+            onClick={() => handleToggle(index)}
+          >
+            <span className="text-lg font-semibold">{item.title}</span>
+            <span
+              className={`transition-transform ${
+                openIndex === index ? "rotate-180" : ""
+              }`}
+            >
+              ▼
+            </span>
+          </button>
+          {openIndex === index && (
+            <div className="p-4 bg-gray-700">
+              <p>{item.content}</p>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const StatCard = ({ icon, number, description }) => {
+  return (
+    <motion.div
+      className="text-center max-w-[220px] flex flex-col items-center bg-gray-800 p-4 rounded-lg shadow-lg transition duration-300 hover:shadow-2xl"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      {icon}
+      <span className="text-5xl font-extrabold md:text-6xl text-white">
+        {number}
+      </span>
+      <p className="mt-2 text-base font-semibold text-gray-400">
+        {description}
+      </p>
+    </motion.div>
+  );
+};
+
+export default UIverseClone;
