@@ -1,9 +1,15 @@
 "use client";
 import React, { useState } from "react";
-import { FaUsers, FaCheckCircle, FaTasks, FaRocket } from "react-icons/fa";
+import { FaUsers, FaCheckCircle, FaTasks, FaRocket, FaBars, FaTimes } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-const UIverseClone = () => {
+const sportyIndia = () => {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const toggleNav = () => {
+    setIsNavOpen(!isNavOpen);
+  };
+
   return (
     <div className="min-h-screen flex flex-col text-white relative overflow-hidden">
       <video
@@ -14,26 +20,27 @@ const UIverseClone = () => {
         src="/background.mp4"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-transparent"></div>
-      
+
       <header className="flex justify-between items-center px-6 py-5 shadow-md relative z-10">
         <div className="text-4xl font-bold">
           Sporty<span className="text-blue-500">india</span>
         </div>
-        <nav>
+
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex space-x-8">
           <ul className="flex space-x-8">
             {["Athletes", "Challenges", "Spotlight", "Blog"].map((item) => (
               <li key={item}>
-                <a
-                  href="#"
-                  className="text-white hover:text-blue-500 transition duration-200"
-                >
+                <a href="#" className="text-white hover:text-blue-500 transition duration-200">
                   {item}
                 </a>
               </li>
             ))}
           </ul>
         </nav>
-        <div className="flex space-x-4">
+
+        {/* Desktop Buttons */}
+        <div className="hidden md:flex space-x-4 relative z-10">
           <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-200">
             + Join
           </button>
@@ -41,12 +48,42 @@ const UIverseClone = () => {
             Sign In or Create Account
           </button>
         </div>
+
+        {/* Hamburger Menu for Mobile */}
+        <div className="md:hidden">
+          <button onClick={toggleNav} className="text-white">
+            {isNavOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          </button>
+        </div>
       </header>
+
+      {/* Mobile Navigation Menu */}
+      {isNavOpen && (
+        <div className="md:hidden bg-gray-800 p-4 flex flex-col space-y-4 text-center relative z-10">
+          <nav>
+            <ul className="space-y-4">
+              {["Athletes", "Challenges", "Spotlight", "Blog"].map((item) => (
+                <li key={item}>
+                  <a href="#" className="text-white hover:text-blue-500 transition duration-200">
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-200">
+            + Join
+          </button>
+          <button className="border border-white hover:border-blue-500 hover:text-blue-500 text-white py-2 px-4 rounded-lg transition duration-200">
+            Sign In or Create Account
+          </button>
+        </div>
+      )}
 
       <main className="text-center mt-16 px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }} 
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           <div className="flex justify-center items-center">
@@ -108,7 +145,7 @@ const CustomAccordion = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
   const handleToggle = (index) => {
-    setOpenIndex(openIndex === index ? null : index); 
+    setOpenIndex(openIndex === index ? null : index);
   };
 
   const items = [
@@ -118,7 +155,7 @@ const CustomAccordion = () => {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. In commodi accusamus saepe blanditiis facere quos facilis voluptatem ea fugit quidem? Veniam quisquam culpa, dolore in asperiores, similique eveniet expedita vero ullam tenetur molestias pariatur!",
     },
     {
-      title: "What Sporty India?",
+      title: "Why Sporty India?",
       content:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. In commodi accusamus saepe blanditiis facere quos facilis voluptatem ea fugit quidem? Veniam quisquam culpa, dolore in asperiores, similique eveniet expedita vero ullam tenetur molestias pariatur!",
     },
@@ -139,9 +176,7 @@ const CustomAccordion = () => {
           >
             <span className="text-lg font-semibold">{item.title}</span>
             <span
-              className={`transition-transform ${
-                openIndex === index ? "rotate-180" : ""
-              }`}
+              className={`transition-transform ${openIndex === index ? "rotate-180" : ""}`}
             >
               ▼
             </span>
@@ -170,10 +205,10 @@ const StatCard = ({ icon, number, description }) => {
         {number}
       </span>
       <p className="mt-2 text-base font-semibold text-gray-400">
-        {description}
+      {description}
       </p>
     </motion.div>
   );
 };
 
-export default UIverseClone;
+export default sportyIndia;
